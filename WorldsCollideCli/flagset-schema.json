@@ -1,0 +1,258 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Flagset",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Battle": {
+      "$ref": "#/definitions/Battle"
+    }
+  },
+  "definitions": {
+    "Battle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ExperienceMagicPointsGold": {
+          "$ref": "#/definitions/ExperienceMagicPointsGold"
+        },
+        "Bosses": {
+          "$ref": "#/definitions/Bosses"
+        },
+        "Scaling": {
+          "$ref": "#/definitions/Scaling"
+        },
+        "Encounters": {
+          "$ref": "#/definitions/Encounters"
+        }
+      }
+    },
+    "ExperienceMagicPointsGold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ExperienceMultiplier",
+        "MagicPointsMultiplier",
+        "GoldMultiplier",
+        "SplitPartyExperience"
+      ],
+      "properties": {
+        "ExperienceMultiplier": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 255.0,
+          "minimum": 0.0
+        },
+        "MagicPointsMultiplier": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 255.0,
+          "minimum": 0.0
+        },
+        "GoldMultiplier": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 255.0,
+          "minimum": 0.0
+        },
+        "SplitPartyExperience": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Bosses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "BossBattles",
+        "StatueBattles",
+        "DragonBattles",
+        "BoosExperiance"
+      ],
+      "properties": {
+        "BossBattles": {
+          "$ref": "#/definitions/BossBattleType"
+        },
+        "StatueBattles": {
+          "$ref": "#/definitions/BossBattleType"
+        },
+        "DragonBattles": {
+          "$ref": "#/definitions/BossBattleType"
+        },
+        "BoosExperiance": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BossBattleType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "Original",
+        "Shuffled",
+        "Mixed"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "Scaling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "LevelScaling",
+        "LevelScalingValue",
+        "HpMpScaling",
+        "HpMpScalingValue",
+        "ExpGpScaling",
+        "ExpGpScalingValue",
+        "AbilityScaling",
+        "AbilityScalingValue",
+        "MaxScaleLevel"
+      ],
+      "properties": {
+        "LevelScaling": {
+          "$ref": "#/definitions/ScalingType"
+        },
+        "LevelScalingValue": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 5.0,
+          "minimum": 0.5
+        },
+        "HpMpScaling": {
+          "$ref": "#/definitions/ScalingType"
+        },
+        "HpMpScalingValue": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 5.0,
+          "minimum": 0.5
+        },
+        "ExpGpScaling": {
+          "$ref": "#/definitions/ScalingType"
+        },
+        "ExpGpScalingValue": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 5.0,
+          "minimum": 0.5
+        },
+        "AbilityScaling": {
+          "$ref": "#/definitions/AbilityScalingType"
+        },
+        "AbilityScalingValue": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 5.0,
+          "minimum": 0.5
+        },
+        "MaxScaleLevel": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 99.0,
+          "minimum": 3.0
+        },
+        "ScaleEightDragons": {
+          "type": "boolean"
+        },
+        "ScaleFinalBattles": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ScalingType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "PartyAverageLevel",
+        "PartyHighestLevel",
+        "CharactersEspers",
+        "CharactersEspersDragons",
+        "Checks",
+        "Time"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "AbilityScalingType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "Element",
+        "Random"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "Encounters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "RandomEncounters",
+        "FixedEncounters",
+        "FixedEncountersPercentage"
+      ],
+      "properties": {
+        "RandomEncounters": {
+          "$ref": "#/definitions/RandomEncountersType"
+        },
+        "FixedEncounters": {
+          "$ref": "#/definitions/FixedEncountersType"
+        },
+        "FixedEncountersPercentage": {
+          "type": "integer",
+          "format": "int32",
+          "maximum": 100.0,
+          "minimum": 0.0
+        }
+      }
+    },
+    "RandomEncountersType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "Original",
+        "Shuffle",
+        "RandomWithBossChance"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "FixedEncountersType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "Original",
+        "RandomWithBossChance"
+      ],
+      "enum": [
+        0,
+        1,
+        3
+      ]
+    }
+  }
+}
