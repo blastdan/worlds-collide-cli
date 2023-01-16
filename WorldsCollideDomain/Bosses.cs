@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorldsCollideCli.Domain
+namespace WorldsCollideDomain
 {
     public enum BossBattleType
     {
@@ -20,7 +20,7 @@ namespace WorldsCollideCli.Domain
 
         [Required]
         public BossBattleType DragonBattles { get; set; }
-        
+
         [Required]
         public bool BoosExperiance { get; set; }
     }

@@ -7,13 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mediatr" Version="11.1.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="NJsonSchema" Version="10.8.0" />
-    <PackageReference Include="NJsonSchema.Yaml" Version="10.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\WorldsCollideDomain\WorldsCollideDomain.csproj" />
   </ItemGroup>
 
 </Project>

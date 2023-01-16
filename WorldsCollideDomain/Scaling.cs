@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorldsCollideCli.Domain
+namespace WorldsCollideDomain
 {
 
-    public enum ScalingType 
+    public enum ScalingType
     {
         None = 0,
         PartyAverageLevel = 1,
@@ -33,21 +33,21 @@ namespace WorldsCollideCli.Domain
 
         [Required]
         public ScalingType HpMpScaling { get; set; }
-        
+
         [Required]
         [Range(0.5, 5)]
         public int HpMpScalingValue { get; set; }
 
         [Required]
         public ScalingType ExpGpScaling { get; set; }
-        
+
         [Required]
         [Range(0.5, 5)]
         public int ExpGpScalingValue { get; set; }
 
         [Required]
         public AbilityScalingType AbilityScaling { get; set; }
-        
+
         [Required]
         [Range(0.5, 5)]
         public int AbilityScalingValue { get; set; }

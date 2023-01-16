@@ -1,12 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NJsonSchema;
 using Spectre.Console.Cli;
 using WorldsCollideCli.Bootstrap;
 using WorldsCollideCli.Commands.Flagset;
 using WorldsCollideCli.Commands.Schema;
-using WorldsCollideCli.Domain;
 
 namespace WorldsCollideCli
 {
@@ -16,10 +14,13 @@ namespace WorldsCollideCli
         {
             var host = CreateHostBuilder(args);
             var registrar = new TypeRegistrar(host);
-            var app = new CommandApp();
+            var app = new CommandApp(registrar);
             app.Configure(config =>
             {
-                config.AddCommand<FlagsetCommand>("flagset");
+                config.AddBranch("flagset", flagset =>
+                {
+                    flagset.AddCommand<FlagsetAddCommand>("add");
+                });
                 config.AddCommand<SchemaCommand>("schema");
             });
 
@@ -29,9 +30,6 @@ namespace WorldsCollideCli
         public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host
          .CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-
-         });
+         .ConfigureServices(ServiceConfiguration.Configure);
     }
 }

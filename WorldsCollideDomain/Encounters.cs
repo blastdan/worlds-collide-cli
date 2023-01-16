@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorldsCollideCli.Domain
+namespace WorldsCollideDomain
 {
 
     public enum RandomEncountersType
@@ -27,7 +27,7 @@ namespace WorldsCollideCli.Domain
         public FixedEncountersType FixedEncounters { get; set; }
 
         [Required]
-        [Range(0,100)]
+        [Range(0, 100)]
         public int FixedEncountersPercentage { get; set; }
 
     }

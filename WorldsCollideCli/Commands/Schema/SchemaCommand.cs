@@ -3,7 +3,6 @@ using NJsonSchema;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Json;
-using WorldsCollideCli.Domain;
 
 namespace WorldsCollideCli.Commands.Schema
 {
@@ -18,7 +17,7 @@ namespace WorldsCollideCli.Commands.Schema
 
         public override int Execute([NotNull] CommandContext context)
         {
-            var schema = JsonSchema.FromType<Domain.Flagset>();
+            var schema = JsonSchema.FromType<WorldsCollideDomain.Flagset>();
             var schemaData = schema.ToJson();
             var json = new JsonText(schemaData);
             this.ansiConsole.Write(new Panel(json));
