@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -21,7 +20,7 @@ namespace WorldsCollideCli.Commands.Flagset
         public async override Task<int> ExecuteAsync(CommandContext context, FlagsetAddCommandSettings settings)
         {
             var directory = new DirectoryInfo(settings.Location);
-            var command = new AddFlagset(settings.FlagsetName, directory);
+            var command = new AddFlagset(settings.FlagsetName, directory, new WorldsCollideDomain.Flagset());
             var newDirectory = await mediator.Send(command);
             var path = new TextPath(newDirectory.FullName);
             AnsiConsole.Write(path);
