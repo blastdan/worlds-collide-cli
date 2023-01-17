@@ -1,13 +1,22 @@
 using System;
 using System.Threading.Tasks;
+using NJsonSchema;
+using WorldsCollideDomain;
 using WorldsCollideDomain.Repositories;
+using YamlDotNet.Serialization;
 
 namespace WorldsCollideInfrastructure.Repositories
 {
     public class FlagsetRepository : IFlagsetRepository
     {
+        private readonly ISerializer yamlSerializer;
 
-        public DirectoryInfo Create(string name, DirectoryInfo location)
+        public FlagsetRepository(ISerializer yamlSerializer)
+        {
+            this.yamlSerializer = yamlSerializer;
+        }
+
+        public async Task<DirectoryInfo> Create(string name, DirectoryInfo location, Flagset flagset)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -19,8 +28,13 @@ namespace WorldsCollideInfrastructure.Repositories
                 throw new ArgumentNullException(nameof(location));
             }
 
-            var path = Path.Join(location.FullName, name);
-            var directory = Directory.CreateDirectory(path);
+            var flagsetPath = Path.Join(location.FullName, name);
+            var flagsetConfigPath = Path.Join(flagsetPath, ".worldscollide");
+            var directory = Directory.CreateDirectory(flagsetPath);
+            var yaml = yamlSerializer.Serialize(flagset);
+            await File.WriteAllTextAsync(flagsetConfigPath, yaml);
+
+            return directory;
         }
     }
 }

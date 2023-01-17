@@ -16,7 +16,7 @@ namespace WorldsCollideInfrastructure.Handlers
 
         public async Task<DirectoryInfo> Handle(AddFlagset request, CancellationToken cancellationToken)
         {
-            return flagsetRepository.Create(request.Name, request.Location);
+            return await flagsetRepository.Create(request.Name, request.Location, request.Flagset);
         }
     }
 }
